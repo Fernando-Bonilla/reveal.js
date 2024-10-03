@@ -1,40 +1,416 @@
 <!doctype html>
+
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+  <title>reveal.js</title>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+  <link rel="stylesheet" href="/dist/reset.css" />
+  <link rel="stylesheet" href="/dist/reveal.css" />
+  <link rel="stylesheet" href="/dist/theme/dracula.css" />
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+  <!-- Theme used for syntax highlighted code -->
+  <link rel="stylesheet" href="/plugin/highlight/monokai.css" />
+</head>
+
+<body>
+
+  <div class="reveal">
+    <div class="layout-wrapper">
+      <!-- Borde izquierdo -->
+      <div class="border-left">
+        <div class="border-left-content-wrapper">
+          <div class="border-left-content border">
+            <p>Primer Semestre</p>
+          </div>
+          <div class="border-left-content">
+            <p>2024</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contenedor principal -->
+      <div class="content-wrapper">
+        <!-- Borde superior -->
+        <div class="border-top">
+          <div class="border-top-content-wrapper">
+            <div>
+              <p>Analista Programador</p>
+            </div>
+            <div>
+              <p>Programación I - Introducción</p>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Slides -->
+        <div class="slides">
+          <section data-markdown="./slides.md" data-separator="^\n---\n" data-separator-vertical="^\n----\n"
+            data-separator-notes="^Note:"> </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/dist/reveal.js"></script>
+  <script src="/plugin/notes/notes.js"></script>
+  <script src="/plugin/markdown/markdown.js"></script>
+  <script src="/plugin/highlight/highlight.js"></script>
+  <style>
+
+    .reveal .slides {
+      text-align: left !important;
+      margin-left: 20px !important;         
+    }
+
+    .reveal pre {
+      margin: 0 !important;
+    }
+  </style>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+
+    function SplitTitlesAndContent() {
+      return {
+        id: 'splitTitlesAndContent',
+        init: (deck) => {
+          deck.addEventListener('slidechanged', function (event) {
+            if (event.currentSlide.dataset.splitMade) {
+              return;
+            }
+
+            const titleDiv = document.createElement('div');
+            titleDiv.classList.add('titles-container')
+            const titles = event.currentSlide.querySelectorAll('h1, h2, h3, h4, h5, h6');
+            titles.forEach((title) => {
+              titleDiv.appendChild(title);
+            });
+
+            const contentDiv = document.createElement('div');
+            contentDiv.classList.add('contents-container')
+            const contents = event.currentSlide.querySelectorAll('p, ul, ol, pre, img, blockquote, table, iframe, figure, div, span');
+            contents.forEach((content) => {
+              contentDiv.appendChild(content);
+            });
+
+            event.currentSlide.innerHTML = '';
+            event.currentSlide.appendChild(titleDiv);
+            event.currentSlide.appendChild(contentDiv);
+            event.currentSlide.dataset.splitMade = 'true';
+          })
+        },
+      }
+    }
+
+    Reveal.initialize({
+      hash: true,
+
+      width: 1920,
+      height: 1220,
+
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes]// , SplitTitlesAndContent
+    });
+
+    window.addEventListener('resize', function () {
+      Reveal.layout();
+    });
+
+  </script>
+
+  <style>
+
+    /*=========Estilos template=========*/
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh !important;
+      width: 100vw !important;
+      position: relative !important;
+    }
+
+    body::before {
+      content: "" !important;
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      height: 100% !important;
+      width: 100% !important;
+      margin: 0;
+      padding: 0;
+      background-image: url('./imgs/laptop-mesa-madera_53876-70997.jpg') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      background-repeat: no-repeat !important;
+      filter: brightness(30%) !important;
+      z-index: -1 !important;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      color: white !important;
+      font-family: 'Poppins', sans-serif !important;
+      font-weight: 600 !important;
+    }
+
+    h3, h4, h5, h6 {
+      margin-top: 30px !important;
+    }
+
+    p {
+      font-family: 'Poppins', sans-serif !important;
+      font-weight: 400 !important;
+    }
+
+    img::before {
+      margin: 0 !important;
+      height: 100% !important;
+    }
+
+    img {
+      margin: 0 !important;
+      height: 100% !important;
+    }
+
+    /*=========Estilos template=========*/
+
+    /*comienzo de metida de mano para pasar los contenedores de los bordes a relativo (no absolute)*/
+    .reveal {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* Contenedor principal usando Flexbox */
+    .layout-wrapper {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    /* Borde izquierdo ocupa espacio */
+    .border-left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      width: 60px;
+      color: white;
+      border-left: 1px solid #6f6f6f;
+      font-family: Arial, sans-serif;
+      font-size: 18px !important;
+      writing-mode: vertical-rl; /* Rota el texto verticalmente */      
+      transform: rotate(180deg);
+    }
+
+    .border-left-content-wrapper {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .border-left-content {
+      flex-grow: 1;
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 50%;
+    }
+
+    .border-left-content.border {
+      border-bottom: 1px solid #6f6f6f;
+    }
+
+    /* Contenedor principal */
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      position: relative;      
+    }
+
+    /* Borde superior ocupa espacio */
+    .border-top {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      height: 60px;
+      color: white;
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      border-bottom: 1px solid #6f6f6f;
+      width: 100%;
+    }
+
+    .border-top-content-wrapper {
+      display: flex;
+      flex-direction: row;
+      width: 80%;
+      justify-content: space-between;
+    }
+
+    /*=========End Estilos template=========*/
+
+    /*=======Estilos para embed code=======*/
+
+    .present {
+      top: 10% !important;
+      height: 90% !important;
+
+    }
+
+    .code-wrapper {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    .hljs {
+      font-size: 60px;
+      line-height: 120%;
+    }
+
+    /*======= End Estilos para embed code=======*/
+
+  </style>
+  <script>
+
+    window.onload = function () {
+      
+      // Se captura el contenedor donde se insertan las slides
+      let slidesContainer = document.querySelector('.slides');
+      // Se capturan todas las imgs dentro del contenedor con la clase .slides (para scopear las imágenes a solo estas)
+      let imgCollection = slidesContainer.querySelectorAll('img');
+
+      // Verifica si hay al menos una imagen
+      if (imgCollection.length > 0) {        
+
+        for (let i = 0; i < imgCollection.length; i++) {
+
+          let img = imgCollection[i];
+
+          // Solo procede si la imagen aún no ha sido redimensionada
+          if (!img.dataset.resized) {
+            let parentImg = img.parentElement;
+
+            // Estilos del contenedor padre de la imagen
+            parentImg.style.height = "100%";
+            parentImg.style.marginTop = "0px";
+            parentImg.style.marginBottom = "0px";
+            parentImg.style.display = "flex";
+            parentImg.style.justifyContent = "center";
+            parentImg.style.alignItems = "center";
+
+            // Ajustes de la imagen
+            img.style.maxWidth = "100%";
+            img.style.maxHeight = "100%";
+            img.style.objectFit = "contain";
+
+            // Limitar tanto el ancho como la altura máxima
+            let maxWidth = 1300;  // Ancho máximo permitido
+            let maxHeight = 900;  // Altura máxima permitida
+
+            let originalWidth = img.naturalWidth;
+            let originalHeight = img.naturalHeight;
+
+            // Si la imagen es más ancha o más alta que los límites, recalcular el tamaño
+            if (originalWidth > maxWidth || originalHeight > maxHeight) {
+              let aspectRatio = originalHeight / originalWidth;
+
+              // Ajusta el ancho y la altura manteniendo la proporción
+              if (originalWidth > originalHeight) {
+                // Si es más ancha que alta
+                let newWidth = Math.min(originalWidth, maxWidth);
+                let newHeight = Math.round(newWidth * aspectRatio);
+
+                // Asegura de que la altura no exceda el máximo permitido
+                if (newHeight > maxHeight) {
+                  newHeight = maxHeight;
+                  newWidth = Math.round(newHeight / aspectRatio);
+                }
+
+                // Aplicar las nuevas dimensiones
+                img.width = newWidth;
+                img.height = newHeight;
+
+                //console.log(`Imagen ${i + 1}: Redimensionada a ${newWidth}px x ${newHeight}px`);
+              } else {
+                // Si es más alta que ancha
+                let newHeight = Math.min(originalHeight, maxHeight);
+                let newWidth = Math.round(newHeight / aspectRatio);
+
+                // Asegura de que el ancho no exceda el máximo permitido
+                if (newWidth > maxWidth) {
+                  newWidth = maxWidth;
+                  newHeight = Math.round(newWidth * aspectRatio);
+                }
+
+                // Aplicar las nuevas dimensiones
+                img.width = newWidth;
+                img.height = newHeight;
+
+                //console.log(`Imagen ${i + 1}: Redimensionada a ${newWidth}px x ${newHeight}px`);
+              }
+            }
+
+            // Marcar la imagen como redimensionada
+            img.dataset.resized = true;
+          }
+        }
+
+        // Recalcula el layout de Reveal.js después de ajustar las imágenes
+        Reveal.layout();
+      } else {
+        console.log("No hay imágenes en el DOM");
+      }
+
+      // Comienzo código que toma en cuenta el ancho del border-left al hacer resize
+      console.log("Ajustando slides con border-left");
+
+      // Selecciona el borde izquierdo y las slides
+      let borderLeft = document.querySelector('.border-left');
+      let slides = document.querySelector('.slides');
+
+      if (borderLeft && slides) {
+        let borderLeftWidth = borderLeft.offsetWidth; // Obtener el ancho del borde izquierdo
+
+        // Ajusta el valor de 'left' en 'slides' teniendo en cuenta el borde izquierdo
+        slides.style.left = `calc(50% + ${borderLeftWidth / 2}px)`;
+
+        //  contenedor se mantiene centrado
+        slides.style.transform = 'translate(-50%, -50%) scale(0.723148)';
+
+        // Recalcular al redimensionar la ventana
+        window.onresize = function () {
+          let newBorderLeftWidth = borderLeft.offsetWidth;
+          slides.style.left = `calc(50% + ${newBorderLeftWidth / 2}px)`;
+          Reveal.layout();  // Recalcula el layout de Reveal.js
+        };
+      }
+
+    }; 
+
+  </script>  
+</body>
+
 </html>
