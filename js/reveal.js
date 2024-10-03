@@ -937,7 +937,7 @@ export default function( revealElement, options ) {
 	 * Applies JavaScript-controlled layout rules to the
 	 * presentation.
 	 */
-	function layout() {
+	function layout() {		
 
 		if( dom.wrapper && !printView.isActive() ) {
 
@@ -1019,7 +1019,7 @@ export default function( revealElement, options ) {
 							//slide.style.top = Math.max( ( size.height - slide.scrollHeight ) / 2, 0 ) + 'px';							
 							//console.log(currentTop);
 							//console.log("tipo currenTop" + typeof(currentTop));
-							slide.style.top = currentTop || Math.max((size.height - slide.scrollHeight) / 2, 0) + 'px'; // Codigo Fernando
+							slide.style.top = currentTop || Math.max((size.height - slide.scrollHeight) / 2, 0) + 'px'; // Codigo Fernando								
 						}
 					}
 					else {
