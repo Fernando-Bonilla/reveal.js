@@ -707,6 +707,7 @@ export default function( revealElement, options ) {
 		// Apply the transforms to the slides container
 		if( slidesTransform.layout ) {
 			Util.transformElement( dom.slides, slidesTransform.layout + ' ' + slidesTransform.overview );
+			
 		}
 		else {
 			Util.transformElement( dom.slides, slidesTransform.overview );
@@ -986,23 +987,27 @@ export default function( revealElement, options ) {
 				}
 				else {
 					dom.slides.style.zoom = '';
-					dom.slides.style.left = '50%';
+					dom.slides.style.left = '50%';					
 					dom.slides.style.top = '50%';
 					dom.slides.style.bottom = 'auto';
 					dom.slides.style.right = 'auto';
-					transformSlides( { layout: 'translate(-50%, -50%) scale('+ scale +')' } );
+					transformSlides( { layout: 'translate(-50%, -50%) scale('+ scale +')' } );					
+					
 				}
 
 				// Select all slides, vertical and horizontal
-				const slides = Array.from( dom.wrapper.querySelectorAll( SLIDES_SELECTOR ) );
+				const slides = Array.from( dom.wrapper.querySelectorAll( SLIDES_SELECTOR ) );				
 
 				for( let i = 0, len = slides.length; i < len; i++ ) {
 					const slide = slides[ i ];
+					//console.log(slide)
 
 					// Don't bother updating invisible slides
 					if( slide.style.display === 'none' ) {
 						continue;
 					}
+					
+					let currentTop = window.getComputedStyle(slide).top // Codigo Fernando
 
 					if( ( config.center || slide.classList.contains( 'center' ) ) ) {
 						// Vertical stacks are not centred since their section
@@ -1011,7 +1016,10 @@ export default function( revealElement, options ) {
 							slide.style.top = 0;
 						}
 						else {
-							slide.style.top = Math.max( ( size.height - slide.scrollHeight ) / 2, 0 ) + 'px';
+							//slide.style.top = Math.max( ( size.height - slide.scrollHeight ) / 2, 0 ) + 'px';							
+							//console.log(currentTop);
+							//console.log("tipo currenTop" + typeof(currentTop));
+							slide.style.top = currentTop || Math.max((size.height - slide.scrollHeight) / 2, 0) + 'px'; // Codigo Fernando
 						}
 					}
 					else {
@@ -1049,7 +1057,7 @@ export default function( revealElement, options ) {
 
 		}
 
-	}
+	} // End function
 
 	/**
 	 * Applies layout logic to the contents of all slides in
