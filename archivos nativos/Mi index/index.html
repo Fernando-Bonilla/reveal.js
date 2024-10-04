@@ -23,48 +23,53 @@
 </head>
 
 <body>
+
   <div class="reveal">
-    <!-- Slides -->
-    <div class="slides">
-      <section data-markdown="./slides.md" data-separator="^\n---\n" data-separator-vertical="^\n----\n"
-        data-separator-notes="^Note:">
+    <div class="layout-wrapper">
+      <!-- Borde izquierdo -->
+      <div class="border-left">
+        <div class="border-left-content-wrapper">
+          <div class="border-left-content border">
+            <p>Primer Semestre</p>
+          </div>
+          <div class="border-left-content">
+            <p>2024</p>
+          </div>
+        </div>
+      </div>
 
-      </section>
+      <!-- Contenedor principal -->
+      <div class="content-wrapper">
+        <!-- Borde superior -->
+        <div class="border-top">
+          <div class="border-top-content-wrapper">
+            <div>
+              <p>Analista Programador</p>
+            </div>
+            <div>
+              <p>Programación I - Introducción</p>
+            </div>
+          </div>
+        </div>
 
+
+        <!-- Slides -->
+        <div class="slides">
+          <section data-markdown="./slides.md" data-separator="^\n---\n" data-separator-vertical="^\n----\n"
+            data-separator-notes="^Note:"> </section>
+        </div>
+      </div>
     </div>
-
   </div>
-
-  <!-- <div class="border-left">
-    <div class="border-left-content-wrapper">
-      <div class="border-left-content border">
-        <p>Primer Semestre</p>
-      </div>
-      <div class="border-left-content">
-        <p>2024</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="border-top">
-    <div class="border-top-content-wrapper">
-      <div>
-        <p>Analista Programador</p>
-      </div>
-      <div>
-        <p>Programación I - Introducción</p>
-      </div>
-    </div>
-  </div> -->
-
   <script src="/dist/reveal.js"></script>
   <script src="/plugin/notes/notes.js"></script>
   <script src="/plugin/markdown/markdown.js"></script>
   <script src="/plugin/highlight/highlight.js"></script>
   <style>
+
     .reveal .slides {
       text-align: left !important;
-
+      margin-left: 20px !important;         
     }
 
     .reveal pre {
@@ -118,195 +123,14 @@
       plugins: [RevealMarkdown, RevealHighlight, RevealNotes]// , SplitTitlesAndContent
     });
 
-    // Add custom HTML to each slide
-    /*     function wrapSlideContent(event) {
-          // Only proceed if this is a newly parsed markdown slide
-          if (!event.currentSlide.querySelector('.slide-content-wrapper')) {
-    
-            // Create wrapper elements for the slide
-            const wrapper = document.createElement('div');
-            wrapper.classList.add('slide-content-wrapper');
-    
-            const borderLeft = document.createElement('div');
-            borderLeft.classList.add('border-left');
-            borderLeft.innerHTML = `<div class="border-left-content-wrapper">
-                                  <div class="border-left-content border">
-                                    <p>Primer Semestre</p>
-                                  </div>
-                                  <div class="border-left-content">
-                                    <p>2024</p>
-                                  </div>
-                                </div>`;
-    
-            let borderTop = document.createElement('div');
-            borderTop.classList.add('border-top');
-            borderTop.innerHTML = `<div class="border-top-content-wrapper">
-                                  <div>
-                                    <p>Analista Programador</p>
-                                  </div>
-                                  <div>
-                                    <p>Programación I - Introducción</p>
-                                  </div>
-                                </div>`;
-    
-            const body = document.createElement('div');
-            body.classList.add('slide-body');
-    
-    
-    
-            const markdownContent = document.createElement('div');
-            markdownContent.classList.add('markdown-content');
-    
-            // Move all existing content into markdownContent
-            while (event.currentSlide.firstChild) {
-              markdownContent.appendChild(event.currentSlide.firstChild);
-            }
-    
-            //body.appendChild(borderLeft);
-            body.appendChild(borderTop);
-            body.appendChild(markdownContent);
-            //wrapper.appendChild(borderTop);
-            wrapper.appendChild(borderLeft);
-            wrapper.appendChild(body);
-            event.currentSlide.appendChild(wrapper);
-          }
-        }
-    
-        // Run when Reveal.js is ready
-        Reveal.on('ready', wrapSlideContent);
-    
-        // Run whenever the slide changes
-        Reveal.on('slidechanged', wrapSlideContent); */
-
-
-
     window.addEventListener('resize', function () {
       Reveal.layout();
     });
 
-
-    /* function addCustomBorders() {
-       const borderLeftHtml = `
-     <div class="border-left">
-       <div class="border-left-content-wrapper">
-         <div class="border-left-content border">
-           <p>Primer Semestre</p>
-         </div>
-         <div class="border-left-content">
-           <p>2024</p>
-         </div>
-       </div>
-     </div>
-   `;
- 
-       const borderTopHtml = `
-     <div class="border-top">
-       <div class="border-top-content-wrapper">
-         <div>
-           <p>Analista Programador</p>
-         </div>
-         <div>
-           <p>Programación I - Introducción</p>
-         </div>
-       </div>
-     </div>
-   `;
- 
-       // Apply custom HTML to each section within .slides
-       const slides = document.querySelectorAll('.slides > section');
-       slides.forEach(slide => {
-         if (!slide.querySelector('.border-left') && !slide.querySelector('.border-top')) {
-           slide.insertAdjacentHTML('afterbegin', borderLeftHtml);
-           slide.insertAdjacentHTML('afterbegin', borderTopHtml);
-         }
-       });
-     }
- 
-     // Run the function on 'ready' and 'slidechanged'
-     Reveal.on('ready', function (event) {
-       addCustomBorders();
-     });
- 
-     Reveal.on('slidechanged', function (event) {
-       addCustomBorders();
-     });
- 
-     // Ensure the borders are added in print-pdf mode
-     if (window.location.search.includes('print-pdf')) {
-       addCustomBorders();
-     } */
-
-
-    function wrapSlideContent(event) {
-      // Check if the current slide already has the custom wrapper
-      if (!event.currentSlide.querySelector('.slide-content-wrapper')) {
-        
-        // Create wrapper elements for the slide
-        const wrapper = document.createElement('div');
-        wrapper.classList.add('slide-content-wrapper');
-
-        const borderLeft = document.createElement('div');
-        borderLeft.classList.add('border-left');
-        borderLeft.innerHTML = `
-        <div class="border-left-content-wrapper">
-          <div class="border-left-content border">
-            <p>Primer Semestre</p>
-          </div>
-          <div class="border-left-content">
-            <p>2024</p>
-          </div>
-        </div>`;
-
-        const borderTop = document.createElement('div');
-        borderTop.classList.add('border-top');
-        borderTop.innerHTML = `
-        <div class="border-top-content-wrapper">
-          <div>
-            <p>Analista Programador</p>
-          </div>
-          <div>
-            <p>Programación I - Introducción</p>
-          </div>
-        </div>`;
-
-        const body = document.createElement('div');
-        body.classList.add('slide-body');
-
-        const markdownContent = document.createElement('div');
-        markdownContent.classList.add('markdown-content');
-
-        // Move all existing content into markdownContent
-        while (event.currentSlide.firstChild) {
-          markdownContent.appendChild(event.currentSlide.firstChild);
-        }
-
-        body.appendChild(borderTop);
-        body.appendChild(markdownContent);
-        wrapper.appendChild(borderLeft);
-        wrapper.appendChild(body);
-        event.currentSlide.appendChild(wrapper);
-      }
-    }
-
-    // Run when Reveal.js is ready
-    Reveal.on('ready', function (event) {
-      wrapSlideContent(event);
-
-      // Check for ?print-pdf and apply to all slides
-      if (window.location.search.includes('print-pdf')) {
-        Reveal.getSlides().forEach(slide => {
-          wrapSlideContent({ currentSlide: slide });
-        });
-      }
-    });
-
-    // Run whenever the slide changes
-    Reveal.on('slidechanged', wrapSlideContent);
-
-
   </script>
 
   <style>
+
     /*=========Estilos template=========*/
     body {
       margin: 0;
@@ -344,10 +168,7 @@
       font-weight: 600 !important;
     }
 
-    h3,
-    h4,
-    h5,
-    h6 {
+    h3, h4, h5, h6 {
       margin-top: 30px !important;
     }
 
@@ -368,56 +189,6 @@
 
     /*=========Estilos template=========*/
 
-    /*=================== Estilos para que el contenido generado en la slide quede dentro de ambos bordes ==============*/
-
-    .slide-content-wrapper {
-      display: flex;
-      /*flex-direction: column;*/
-      flex-direction: row;
-      height: 100%;
-    }
-
-    .slide-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: transparent;
-      height: 60px;
-      color: white;
-      font-family: Arial, sans-serif;
-      font-size: 18px;
-      border-bottom: 1px solid #6f6f6f;
-      width: 100%;
-    }
-
-    .slide-body {
-      display: flex;
-      flex-grow: 1;
-      flex-direction: column;
-    }
-
-    .border-left {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: transparent;
-      width: 60px;
-      color: white;
-      border-left: 1px solid #6f6f6f;
-      font-family: Arial, sans-serif;
-      font-size: 18px;
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-    }
-
-    .markdown-content {
-      flex-grow: 1;
-      padding: 20px;
-    }
-
-    /*================= End Estilos para que el contenido generado en la slide quede dentro de ambos bordes ============*/
-
-
     /*comienzo de metida de mano para pasar los contenedores de los bordes a relativo (no absolute)*/
     .reveal {
       display: flex;
@@ -434,41 +205,40 @@
 
     /* Borde izquierdo ocupa espacio */
     .border-left {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      background-color: transparent !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
       width: 60px;
       color: white;
       border-left: 1px solid #6f6f6f;
       font-family: Arial, sans-serif;
       font-size: 18px !important;
-      writing-mode: vertical-rl;
-      /* Rota el texto verticalmente */
+      writing-mode: vertical-rl; /* Rota el texto verticalmente */      
       transform: rotate(180deg);
     }
 
     .border-left-content-wrapper {
-      display: flex !important;
-      flex-direction: row !important;
-      justify-content: space-around !important;
-      align-items: center !important;
-      height: 100% !important;
-      width: 100% !important;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      width: 100%;
     }
 
     .border-left-content {
-      flex-grow: 1 !important;
-      display: flex !important;
-      align-content: center !important;
-      align-items: center !important;
-      justify-content: center !important;
-      width: 100% !important;
-      height: 50% !important;
+      flex-grow: 1;
+      display: flex;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 50%;
     }
 
     .border-left-content.border {
-      border-bottom: 1px solid #6f6f6f !important;
+      border-bottom: 1px solid #6f6f6f;
     }
 
     /* Contenedor principal */
@@ -476,7 +246,7 @@
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      position: relative;
+      position: relative;      
     }
 
     /* Borde superior ocupa espacio */
@@ -521,18 +291,19 @@
     }
 
     /*======= End Estilos para embed code=======*/
+
   </style>
   <script>
 
     window.onload = function () {
-
+      
       // Se captura el contenedor donde se insertan las slides
       let slidesContainer = document.querySelector('.slides');
       // Se capturan todas las imgs dentro del contenedor con la clase .slides (para scopear las imágenes a solo estas)
       let imgCollection = slidesContainer.querySelectorAll('img');
 
       // Verifica si hay al menos una imagen
-      if (imgCollection.length > 0) {
+      if (imgCollection.length > 0) {        
 
         for (let i = 0; i < imgCollection.length; i++) {
 
@@ -627,7 +398,7 @@
         slides.style.left = `calc(50% + ${borderLeftWidth / 2}px)`;
 
         //  contenedor se mantiene centrado
-        //slides.style.transform = 'translate(-50%, -50%) scale(0.723148)';
+        slides.style.transform = 'translate(-50%, -50%) scale(0.723148)';
 
         // Recalcular al redimensionar la ventana
         window.onresize = function () {
@@ -637,9 +408,9 @@
         };
       }
 
-    };
+    }; 
 
-  </script>
+  </script>  
 </body>
 
 </html>

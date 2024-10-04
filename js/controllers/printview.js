@@ -20,6 +20,8 @@ export default class PrintView {
 
 		const config = this.Reveal.getConfig();
 		const slides = queryAll( this.Reveal.getRevealElement(), SLIDES_SELECTOR )
+		//const slides = queryAll(this.Reveal.getRevealElement(), `${SLIDES_SELECTOR}, .layout-wrapper`); //Codigo Fernando
+
 
 		// Compute slide numbers now, before we start duplicating slides
 		const injectPageNumbers = config.slideNumber && /all|print/i.test( config.showSlideNumber );
@@ -70,6 +72,9 @@ export default class PrintView {
 
 		// Slide and slide background layout
 		slides.forEach( function( slide, index ) {
+
+			//const customElements = slide.querySelectorAll('.layout-wrapper'); // codigo Fernando    
+			//customElements.forEach(el => el.classList.add('pdf-page')); // codigo Fernando
 
 			// Vertical stacks are not centred since their section
 			// children will be
