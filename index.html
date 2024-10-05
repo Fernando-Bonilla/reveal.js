@@ -64,6 +64,7 @@
   <style>
     .reveal .slides {
       text-align: left !important;
+      /*top: 60px;*/
 
     }
 
@@ -111,72 +112,81 @@
     Reveal.initialize({
       hash: true,
 
-      width: 1920,
-      height: 1220,
+      //width: 1920,
+      //height: 1220,
+
+      //width: '100%',
+      //height: '100%',
+      
+      width: '100%',
+      height: '100%',
+      margin: 0,
+
+      autoScale: true,
 
       // Learn about plugins: https://revealjs.com/plugins/
       plugins: [RevealMarkdown, RevealHighlight, RevealNotes]// , SplitTitlesAndContent
     });
 
     // Add custom HTML to each slide
-    /*     function wrapSlideContent(event) {
-          // Only proceed if this is a newly parsed markdown slide
-          if (!event.currentSlide.querySelector('.slide-content-wrapper')) {
-    
-            // Create wrapper elements for the slide
-            const wrapper = document.createElement('div');
-            wrapper.classList.add('slide-content-wrapper');
-    
-            const borderLeft = document.createElement('div');
-            borderLeft.classList.add('border-left');
-            borderLeft.innerHTML = `<div class="border-left-content-wrapper">
-                                  <div class="border-left-content border">
-                                    <p>Primer Semestre</p>
-                                  </div>
-                                  <div class="border-left-content">
-                                    <p>2024</p>
-                                  </div>
-                                </div>`;
-    
-            let borderTop = document.createElement('div');
-            borderTop.classList.add('border-top');
-            borderTop.innerHTML = `<div class="border-top-content-wrapper">
-                                  <div>
-                                    <p>Analista Programador</p>
-                                  </div>
-                                  <div>
-                                    <p>Programación I - Introducción</p>
-                                  </div>
-                                </div>`;
-    
-            const body = document.createElement('div');
-            body.classList.add('slide-body');
-    
-    
-    
-            const markdownContent = document.createElement('div');
-            markdownContent.classList.add('markdown-content');
-    
-            // Move all existing content into markdownContent
-            while (event.currentSlide.firstChild) {
-              markdownContent.appendChild(event.currentSlide.firstChild);
-            }
-    
-            //body.appendChild(borderLeft);
-            body.appendChild(borderTop);
-            body.appendChild(markdownContent);
-            //wrapper.appendChild(borderTop);
-            wrapper.appendChild(borderLeft);
-            wrapper.appendChild(body);
-            event.currentSlide.appendChild(wrapper);
-          }
-        }
-    
-        // Run when Reveal.js is ready
-        Reveal.on('ready', wrapSlideContent);
-    
-        // Run whenever the slide changes
-        Reveal.on('slidechanged', wrapSlideContent); */
+    /*  function wrapSlideContent(event) {
+       // Only proceed if this is a newly parsed markdown slide
+       if (!event.currentSlide.querySelector('.slide-content-wrapper')) {
+ 
+         // Create wrapper elements for the slide
+         const wrapper = document.createElement('div');
+         wrapper.classList.add('slide-content-wrapper');
+ 
+         const borderLeft = document.createElement('div');
+         borderLeft.classList.add('border-left');
+         borderLeft.innerHTML = `<div class="border-left-content-wrapper">
+                               <div class="border-left-content border">
+                                 <p>Primer Semestre</p>
+                               </div>
+                               <div class="border-left-content">
+                                 <p>2024</p>
+                               </div>
+                             </div>`;
+ 
+         let borderTop = document.createElement('div');
+         borderTop.classList.add('border-top');
+         borderTop.innerHTML = `<div class="border-top-content-wrapper">
+                               <div>
+                                 <p>Analista Programador</p>
+                               </div>
+                               <div>
+                                 <p>Programación I - Introducción</p>
+                               </div>
+                             </div>`;
+ 
+         const body = document.createElement('div');
+         body.classList.add('slide-body');
+ 
+ 
+ 
+         const markdownContent = document.createElement('div');
+         markdownContent.classList.add('markdown-content');
+ 
+         // Move all existing content into markdownContent
+         while (event.currentSlide.firstChild) {
+           markdownContent.appendChild(event.currentSlide.firstChild);
+         }
+ 
+         //body.appendChild(borderLeft);
+         body.appendChild(borderTop);
+         body.appendChild(markdownContent);
+         //wrapper.appendChild(borderTop);
+         wrapper.appendChild(borderLeft);
+         wrapper.appendChild(body);
+         event.currentSlide.appendChild(wrapper);
+       }
+     }
+ 
+     // Run when Reveal.js is ready
+     Reveal.on('ready', wrapSlideContent);
+ 
+     // Run whenever the slide changes
+    Reveal.on('slidechanged', wrapSlideContent); */
 
 
 
@@ -237,10 +247,75 @@
      } */
 
 
-    function wrapSlideContent(event) {
-      // Check if the current slide already has the custom wrapper
-      if (!event.currentSlide.querySelector('.slide-content-wrapper')) {
-        
+    /*      function wrapSlideContent(event) {
+          // Check if the current slide already has the custom wrapper
+          if (!event.currentSlide.querySelector('.slide-content-wrapper')) {
+    
+            // Create wrapper elements for the slide
+            const wrapper = document.createElement('div');
+            wrapper.classList.add('slide-content-wrapper');
+    
+            const borderLeft = document.createElement('div');
+            borderLeft.classList.add('border-left');
+            borderLeft.innerHTML = `
+            <div class="border-left-content-wrapper">
+              <div class="border-left-content border">
+                <p>Primer Semestre</p>
+              </div>
+              <div class="border-left-content">
+                <p>2024</p>
+              </div>
+            </div>`;
+    
+            const borderTop = document.createElement('div');
+            borderTop.classList.add('border-top');
+            borderTop.innerHTML = `
+            <div class="border-top-content-wrapper">
+              <div>
+                <p>Analista Programador</p>
+              </div>
+              <div>
+                <p>Programación I - Introducción</p>
+              </div>
+            </div>`;
+    
+            const body = document.createElement('div');
+            body.classList.add('slide-body');
+    
+            const markdownContent = document.createElement('div');
+            markdownContent.classList.add('markdown-content');
+    
+            // Move all existing content into markdownContent
+            while (event.currentSlide.firstChild) {
+              markdownContent.appendChild(event.currentSlide.firstChild);
+            }
+    
+            body.appendChild(borderTop);
+            body.appendChild(markdownContent);
+            wrapper.appendChild(borderLeft);
+            wrapper.appendChild(body);
+            event.currentSlide.appendChild(wrapper);
+          }
+        }
+    
+        // Run when Reveal.js is ready
+        Reveal.on('ready', function (event) {
+          wrapSlideContent(event);
+    
+          // Check for ?print-pdf and apply to all slides
+          if (window.location.search.includes('print-pdf')) {
+            Reveal.getSlides().forEach(slide => {
+              wrapSlideContent({ currentSlide: slide });
+            });
+          }
+        });
+    
+        // Run whenever the slide changes
+        Reveal.on('slidechanged', wrapSlideContent);  */
+
+
+    function wrapSlideContent(slide) {
+      if (!slide.querySelector('.slide-content-wrapper')) {
         // Create wrapper elements for the slide
         const wrapper = document.createElement('div');
         wrapper.classList.add('slide-content-wrapper');
@@ -248,26 +323,26 @@
         const borderLeft = document.createElement('div');
         borderLeft.classList.add('border-left');
         borderLeft.innerHTML = `
-        <div class="border-left-content-wrapper">
-          <div class="border-left-content border">
-            <p>Primer Semestre</p>
-          </div>
-          <div class="border-left-content">
-            <p>2024</p>
-          </div>
-        </div>`;
+          <div class="border-left-content-wrapper">
+            <div class="border-left-content border">
+              <p>Primer Semestre</p>
+            </div>
+            <div class="border-left-content">
+              <p>2024</p>
+            </div>
+          </div>`;
 
         const borderTop = document.createElement('div');
         borderTop.classList.add('border-top');
         borderTop.innerHTML = `
-        <div class="border-top-content-wrapper">
-          <div>
-            <p>Analista Programador</p>
-          </div>
-          <div>
-            <p>Programación I - Introducción</p>
-          </div>
-        </div>`;
+          <div class="border-top-content-wrapper">
+            <div>
+              <p>Analista Programador</p>
+            </div>
+            <div>
+              <p>Programación I - Introducción</p>
+            </div>
+          </div>`;
 
         const body = document.createElement('div');
         body.classList.add('slide-body');
@@ -276,32 +351,35 @@
         markdownContent.classList.add('markdown-content');
 
         // Move all existing content into markdownContent
-        while (event.currentSlide.firstChild) {
-          markdownContent.appendChild(event.currentSlide.firstChild);
+        while (slide.firstChild) {
+          markdownContent.appendChild(slide.firstChild);
         }
 
         body.appendChild(borderTop);
         body.appendChild(markdownContent);
         wrapper.appendChild(borderLeft);
         wrapper.appendChild(body);
-        event.currentSlide.appendChild(wrapper);
+        slide.appendChild(wrapper);
       }
     }
 
     // Run when Reveal.js is ready
-    Reveal.on('ready', function (event) {
-      wrapSlideContent(event);
+    Reveal.on('ready', function () {
+      // Loop over all slides to add borders
+      Reveal.getSlides().forEach(slide => {
+        wrapSlideContent(slide);
+      });
 
       // Check for ?print-pdf and apply to all slides
       if (window.location.search.includes('print-pdf')) {
         Reveal.getSlides().forEach(slide => {
-          wrapSlideContent({ currentSlide: slide });
+          wrapSlideContent(slide);
         });
       }
     });
 
-    // Run whenever the slide changes
-    Reveal.on('slidechanged', wrapSlideContent);
+
+
 
 
   </script>
@@ -505,8 +583,8 @@
     /*=======Estilos para embed code=======*/
 
     .present {
-      top: 10% !important;
-      height: 90% !important;
+      /*top: 10% !important;*/
+      height: 100% !important;
 
     }
 
@@ -617,7 +695,7 @@
       console.log("Ajustando slides con border-left");
 
       // Selecciona el borde izquierdo y las slides
-      let borderLeft = document.querySelector('.border-left');
+      /* let borderLeft = document.querySelector('.border-left');
       let slides = document.querySelector('.slides');
 
       if (borderLeft && slides) {
@@ -635,7 +713,7 @@
           slides.style.left = `calc(50% + ${newBorderLeftWidth / 2}px)`;
           Reveal.layout();  // Recalcula el layout de Reveal.js
         };
-      }
+      } */
 
     };
 
