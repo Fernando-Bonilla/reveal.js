@@ -51,8 +51,7 @@ Profesor
 ```csharp
  public int testeo() {
       int numero = 15;
-      string cadena = "Hola cacarola string 
-      string string string";
+      string cadena = "Hola cacarola string string string string string string stringstring string stringstring string stringstring string stringstring string stringstring string stringstring string string";
 
       if(cadena.length < numero) 
       {

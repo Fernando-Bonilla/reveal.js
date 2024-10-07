@@ -61,28 +61,6 @@
     </div>
   </div>
 
-  <!-- <div class="border-left">
-    <div class="border-left-content-wrapper">
-      <div class="border-left-content border">
-        <p>Primer Semestre</p>
-      </div>
-      <div class="border-left-content">
-        <p>2024</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="border-top">
-    <div class="border-top-content-wrapper">
-      <div>
-        <p>Analista Programador</p>
-      </div>
-      <div>
-        <p>Programación I - Introducción</p>
-      </div>
-    </div>
-  </div> -->
-
   <script src="/dist/reveal.js"></script>
   <script src="/plugin/notes/notes.js"></script>
   <script src="/plugin/markdown/markdown.js"></script>
@@ -146,7 +124,7 @@
       //height: '100%',
 
       width: '100%',
-      height: '100%',
+      height: '90%',
       margin: 0,
 
       autoScale: true,
@@ -525,71 +503,6 @@
       });
     }; */
 
-    function addBordersForPrint() {
-      console.log('Adding print borders');
-
-      const slides = document.querySelectorAll('.slides section');
-
-      slides.forEach(slide => {
-        const borderLeftHtml = `
-          <div class="border-left border-left-print">
-            <div class="border-left-content-wrapper">
-              <div class="border-left-content border">
-                <p>Primer Semestre</p>
-              </div>
-              <div class="border-left-content">
-                <p>2024</p>
-              </div>
-            </div>
-          </div>
-        `;
-
-        const borderTopHtml = `
-          <div class="border-top border-top-print">
-            <div class="border-top-content-wrapper">
-              <div>
-                <p>Analista Programador</p>
-              </div>
-              <div>
-                <p>Programación I - Introducción</p>
-              </div>
-            </div>
-          </div>
-        `;
-
-        // Insert the borders before the slide content
-        slide.insertAdjacentHTML('afterbegin', borderTopHtml);
-        slide.insertAdjacentHTML('afterbegin', borderLeftHtml);
-      });
-    }
-
-    /* window.onload = function () {
-      // Check if the URL contains ?print-pdf
-      const isPrintPDF = window.location.search.includes('print-pdf');
-      document.body.classList.toggle('print-pdf', isPrintPDF);
-
-      if (isPrintPDF) {
-        // Hide normal view borders
-        document.querySelectorAll('.border-top:not(.border-top-print)').forEach(border => border.style.display = 'none');
-        document.querySelectorAll('.border-left:not(.border-left-print)').forEach(border => border.style.display = 'none');
-
-        // Add borders for print view
-        addBordersForPrint();
-      } else {
-        // Hide print borders in normal view
-        document.querySelectorAll('.border-top-print, .border-left-print').forEach(border => {
-          border.style.display = 'none';
-        });
-      }
-    }; */
-
-
-
-
-
-
-
-
 
 
 
@@ -813,12 +726,6 @@
     /*======= End Estilos para embed code=======*/
 
     /*======== Estilos para media print========*/
-    /* Styles for borders inserted in print-pdf mode */
-
-    /*.border-left-print,
-    .border-top-print {
-      display: block !important;
-    }*/
 
     /* Esconde bordes normales en modo print */
 
@@ -844,6 +751,100 @@
     
   </style>
   <script>
+
+    // Codigo que inserta los borders divs en print view
+    /*function addBordersForPrint() {
+      console.log('Adding print borders');
+
+      const slides = document.querySelectorAll('.slides section');
+
+      slides.forEach(slide => {
+        const borderLeftHtml = `
+          <div class="border-left border-left-print">
+            <div class="border-left-content-wrapper">
+              <div class="border-left-content border">
+                <p>Primer Semestre</p>
+              </div>
+              <div class="border-left-content">
+                <p>2024</p>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const borderTopHtml = `
+          <div class="border-top border-top-print">
+            <div class="border-top-content-wrapper">
+              <div>
+                <p>Analista Programador</p>
+              </div>
+              <div>
+                <p>Programación I - Introducción</p>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Insert the borders before the slide content
+        slide.insertAdjacentHTML('afterbegin', borderTopHtml);
+        slide.insertAdjacentHTML('afterbegin', borderLeftHtml);
+      });
+    }*/
+
+    function addBordersForPrint() {
+  console.log('Adding print borders');
+
+  const slides = document.querySelectorAll('.slides section');
+
+  slides.forEach(slide => {
+    // Create wrapper elements for the slide
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('slide-content-wrapper');
+
+    const borderLeft = document.createElement('div');
+    borderLeft.classList.add('border-left', 'border-left-print');
+    borderLeft.innerHTML = `
+      <div class="border-left-content-wrapper">
+        <div class="border-left-content border">
+          <p>Primer Semestre</p>
+        </div>
+        <div class="border-left-content">
+          <p>2024</p>
+        </div>
+      </div>`;
+
+    const borderTop = document.createElement('div');
+    borderTop.classList.add('border-top', 'border-top-print');
+    borderTop.innerHTML = `
+      <div class="border-top-content-wrapper">
+        <div>
+          <p>Analista Programador</p>
+        </div>
+        <div>
+          <p>Programación I - Introducción</p>
+        </div>
+      </div>`;
+
+    const body = document.createElement('div');
+    body.classList.add('slide-body');
+
+    // Wrap all existing slide content
+    const markdownContent = document.createElement('div');
+    markdownContent.classList.add('markdown-content');
+    while (slide.firstChild) {
+      markdownContent.appendChild(slide.firstChild);
+    }
+
+    // Arrange elements into wrapper
+    body.appendChild(borderTop);
+    body.appendChild(markdownContent);
+    wrapper.appendChild(borderLeft);
+    wrapper.appendChild(body);
+    slide.appendChild(wrapper);
+  });
+}
+
+
 
     window.onload = function () {
 
@@ -958,7 +959,7 @@
         };
       } */
 
-
+      // Cdigo que verifica si la url tiene el parametro print-pdf, si lo tiene muestra los div generados dinamicamente y esconde los div que estan en el html
       const isPrintPDF = window.location.search.includes('print-pdf');
       document.body.classList.toggle('print-pdf', isPrintPDF);
 
