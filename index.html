@@ -26,7 +26,7 @@
   <div class="reveal">
     <div class="layout-wrapper">
       <!-- Left Border (Hidden in print-pdf mode) -->
-      <div class="border-left">
+      <div class="border-left border-left-html">
         <div class="border-left-content-wrapper">
           <div class="border-left-content border">
             <p>Primer Semestre</p>
@@ -40,7 +40,7 @@
       <!-- Main Content Wrapper -->
       <div class="content-wrapper">
         <!-- Top Border (Hidden in print-pdf mode) -->
-        <div class="border-top">
+        <div class="border-top border-top-html">
           <div class="border-top-content-wrapper">
             <div>
               <p>Analista Programador</p>
@@ -406,7 +406,7 @@
     }); */
 
     // Function to dynamically insert borders for print-pdf mode
-    function addBordersForPrint() {
+    /* function addBordersForPrint() {
       const borderLeftHtml = `
       <div class="border-left">
         <div class="border-left-content-wrapper">
@@ -445,10 +445,148 @@
       if (window.location.search.includes('print-pdf')) {
         document.body.classList.add('print-pdf');
 
+        document.querySelector('.border-top').style.display = 'none';
+        document.querySelector('.border-left').style.display = 'none';
+
         // Call function to dynamically insert borders
         addBordersForPrint();
       }
+    }; */
+
+    /* function addBordersForPrint() {
+      const slides = document.querySelectorAll('.slides section');
+
+      slides.forEach(slide => {
+        const borderLeftHtml = `
+          <div class="border-left border-left-print">
+            <div class="border-left-content-wrapper">
+              <div class="border-left-content border">
+                <p>Primer Semestre</p>
+              </div>
+              <div class="border-left-content">
+                <p>2024</p>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const borderTopHtml = `
+          <div class="border-top border-top-print">
+            <div class="border-top-content-wrapper">
+              <div>
+                <p>Analista Programador</p>
+              </div>
+              <div>
+                <p>Programación I - Introducción</p>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Insert the borders before the slide content
+        slide.insertAdjacentHTML('afterbegin', borderTopHtml);
+        slide.insertAdjacentHTML('afterbegin', borderLeftHtml);
+      });
+    }
+
+
+    window.onload = function () {
+      // Check if the URL contains ?print-pdf
+      if (window.location.search.includes('print-pdf')) {
+        document.body.classList.add('print-pdf');
+
+        // Hide the borders for the normal view
+        document.querySelectorAll('.border-top:not(.border-top-print)').forEach(border => border.style.display = 'none');
+        document.querySelectorAll('.border-left:not(.border-left-print)').forEach(border => border.style.display = 'none');
+
+        // Add borders to all slides for print
+        addBordersForPrint();
+      }
     };
+
+    Reveal.on('ready', function () {
+      addBordersForPrint();
+    });
+
+
+    window.onload = function () {
+      // Check if the URL contains ?print-pdf
+      const isPrintPDF = window.location.search.includes('print-pdf');
+      document.body.classList.toggle('print-pdf', isPrintPDF);
+
+      // Hide or show print borders
+      document.querySelectorAll('.border-top-print, .border-left-print').forEach(border => {
+        border.style.display = isPrintPDF ? 'flex' : 'none';
+      });
+
+      // Hide or show normal borders
+      document.querySelectorAll('.border-top-html, .border-left-html').forEach(border => {
+        border.style.display = isPrintPDF ? 'none' : 'flex';
+      });
+    }; */
+
+    function addBordersForPrint() {
+      console.log('Adding print borders');
+
+      const slides = document.querySelectorAll('.slides section');
+
+      slides.forEach(slide => {
+        const borderLeftHtml = `
+          <div class="border-left border-left-print">
+            <div class="border-left-content-wrapper">
+              <div class="border-left-content border">
+                <p>Primer Semestre</p>
+              </div>
+              <div class="border-left-content">
+                <p>2024</p>
+              </div>
+            </div>
+          </div>
+        `;
+
+        const borderTopHtml = `
+          <div class="border-top border-top-print">
+            <div class="border-top-content-wrapper">
+              <div>
+                <p>Analista Programador</p>
+              </div>
+              <div>
+                <p>Programación I - Introducción</p>
+              </div>
+            </div>
+          </div>
+        `;
+
+        // Insert the borders before the slide content
+        slide.insertAdjacentHTML('afterbegin', borderTopHtml);
+        slide.insertAdjacentHTML('afterbegin', borderLeftHtml);
+      });
+    }
+
+    /* window.onload = function () {
+      // Check if the URL contains ?print-pdf
+      const isPrintPDF = window.location.search.includes('print-pdf');
+      document.body.classList.toggle('print-pdf', isPrintPDF);
+
+      if (isPrintPDF) {
+        // Hide normal view borders
+        document.querySelectorAll('.border-top:not(.border-top-print)').forEach(border => border.style.display = 'none');
+        document.querySelectorAll('.border-left:not(.border-left-print)').forEach(border => border.style.display = 'none');
+
+        // Add borders for print view
+        addBordersForPrint();
+      } else {
+        // Hide print borders in normal view
+        document.querySelectorAll('.border-top-print, .border-left-print').forEach(border => {
+          border.style.display = 'none';
+        });
+      }
+    }; */
+
+
+
+
+
 
 
 
@@ -559,6 +697,7 @@
       font-size: 18px;
       writing-mode: vertical-rl;
       transform: rotate(180deg);
+      z-index: 2;
     }
 
     .markdown-content {
@@ -672,6 +811,37 @@
     }
 
     /*======= End Estilos para embed code=======*/
+
+    /*======== Estilos para media print========*/
+    /* Styles for borders inserted in print-pdf mode */
+
+    /*.border-left-print,
+    .border-top-print {
+      display: block !important;
+    }*/
+
+    /* Esconde bordes normales en modo print */
+
+    .print-pdf .border-top-html, 
+    .print-pdf .border-left-html {
+      display: none !important;
+    }
+
+    /* Esconde bordes de impresión en modo normal */
+    body:not(.print-pdf) .border-left-print,
+    body:not(.print-pdf) .border-top-print {
+      display: none !important;
+    }
+
+    /* Mostrar bordes de impresión solo en modo print */
+    .print-pdf .border-top-print, 
+    .print-pdf .border-left-print {
+      display: flex !important;
+    }
+
+
+
+    
   </style>
   <script>
 
@@ -787,6 +957,24 @@
           Reveal.layout();  // Recalcula el layout de Reveal.js
         };
       } */
+
+
+      const isPrintPDF = window.location.search.includes('print-pdf');
+      document.body.classList.toggle('print-pdf', isPrintPDF);
+
+      if (isPrintPDF) {
+        // Ocultar borders normales
+        document.querySelectorAll('.border-top:not(.border-top-print)').forEach(border => border.style.display = 'none');
+        document.querySelectorAll('.border-left:not(.border-left-print)').forEach(border => border.style.display = 'none');
+
+        // Agregar borders de print
+        addBordersForPrint();
+      } else {
+        // Ocultar borders de print en vista normal
+        document.querySelectorAll('.border-top-print, .border-left-print').forEach(border => {
+          border.style.display = 'none';
+        });
+      }
 
     };
 
