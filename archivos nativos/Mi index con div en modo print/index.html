@@ -24,41 +24,15 @@
 
 <body>
   <div class="reveal">
-    <div class="layout-wrapper">
-      <!-- Left Border (Hidden in print-pdf mode) -->
-      <div class="border-left">
-        <div class="border-left-content-wrapper">
-          <div class="border-left-content border">
-            <p>Primer Semestre</p>
-          </div>
-          <div class="border-left-content">
-            <p>2024</p>
-          </div>
-        </div>
-      </div>
+    <!-- Slides -->
+    <div class="slides">
+      <section data-markdown="./slides.md" data-separator="^\n---\n" data-separator-vertical="^\n----\n"
+        data-separator-notes="^Note:">
 
-      <!-- Main Content Wrapper -->
-      <div class="content-wrapper">
-        <!-- Top Border (Hidden in print-pdf mode) -->
-        <div class="border-top">
-          <div class="border-top-content-wrapper">
-            <div>
-              <p>Analista Programador</p>
-            </div>
-            <div>
-              <p>Programación I - Introducción</p>
-            </div>
-          </div>
-        </div>
+      </section>
 
-        <!-- Slides Container -->
-        <div class="slides">
-          <section data-markdown="./slides.md" data-separator="^\n---\n" data-separator-vertical="^\n----\n"
-            data-separator-notes="^Note:">
-          </section>
-        </div>
-      </div>
     </div>
+
   </div>
 
   <!-- <div class="border-left">
@@ -91,7 +65,6 @@
     .reveal .slides {
       text-align: left !important;
       /*top: 60px;*/
-      position: relative !important;
 
     }
 
@@ -144,7 +117,7 @@
 
       //width: '100%',
       //height: '100%',
-
+      
       width: '100%',
       height: '100%',
       margin: 0,
@@ -341,7 +314,7 @@
         Reveal.on('slidechanged', wrapSlideContent);  */
 
 
-    /*function wrapSlideContent(slide) {
+    function wrapSlideContent(slide) {
       if (!slide.querySelector('.slide-content-wrapper')) {
         // Create wrapper elements for the slide
         const wrapper = document.createElement('div');
@@ -403,53 +376,7 @@
           wrapSlideContent(slide);
         });
       }
-    }); */
-
-    // Function to dynamically insert borders for print-pdf mode
-    function addBordersForPrint() {
-      const borderLeftHtml = `
-      <div class="border-left">
-        <div class="border-left-content-wrapper">
-          <div class="border-left-content border">
-            <p>Primer Semestre</p>
-          </div>
-          <div class="border-left-content">
-            <p>2024</p>
-          </div>
-        </div>
-      </div>
-    `;
-
-      const borderTopHtml = `
-      <div class="border-top">
-        <div class="border-top-content-wrapper">
-          <div>
-            <p>Analista Programador</p>
-          </div>
-          <div>
-            <p>Programación I - Introducción</p>
-          </div>
-        </div>
-      </div>
-    `;
-
-      const slidesContainer = document.querySelector('.slides');
-        if (slidesContainer) {
-          slidesContainer.insertAdjacentHTML('beforebegin', borderTopHtml);
-          slidesContainer.insertAdjacentHTML('beforebegin', borderLeftHtml);
-        }
-      }
-
-    window.onload = function () {
-      // Check if the URL contains ?print-pdf
-      if (window.location.search.includes('print-pdf')) {
-        document.body.classList.add('print-pdf');
-
-        // Call function to dynamically insert borders
-        addBordersForPrint();
-      }
-    };
-
+    });
 
 
 
