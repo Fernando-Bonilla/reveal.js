@@ -770,9 +770,9 @@
       /*overflow-y: auto !important; /* Ensure content doesn't overflow */ 
     }
 
-    /*.pdf-page .markdown-content {
-      padding: 0px;
-    }*/
+    .pdf-page {
+      background: transparent !important;
+    }
 
     
     
@@ -995,11 +995,42 @@
         document.querySelectorAll('.border-top:not(.border-top-print)').forEach(border => border.style.display = 'none');
         document.querySelectorAll('.border-left:not(.border-left-print)').forEach(border => border.style.display = 'none');
 
-        // Remueve propiedad position: Absolute, ya que el script reaveal.js calcula automaticamente el top             
-        document.querySelectorAll('.reveal .slides section').forEach(section => {
-          section.setAttribute('style', 'position: static !important');
-        });     
+       
         
+        // Agrega la imagen de fondo y el filtro a cada slide
+        /*document.querySelectorAll('.reveal .slides section').forEach(section => {
+          section.style.backgroundImage = 'url("./imgs/laptop-mesa-madera_53876-70997.jpg")';
+          section.style.backgroundSize = 'cover';
+          section.style.backgroundPosition = 'center';
+          section.style.backgroundRepeat = 'no-repeat';
+          section.style.filter = 'brightness(30%)';
+          section.style.zIndex = '-1';
+          
+
+        });*/
+        
+        document.querySelectorAll('.reveal .slides section').forEach(section => {
+          const backgroundDiv = document.createElement('div');
+          backgroundDiv.style.position = 'absolute';
+          backgroundDiv.style.top = 0;
+          backgroundDiv.style.left = 0;
+          backgroundDiv.style.width = '100%';
+          backgroundDiv.style.height = '100%';
+          backgroundDiv.style.backgroundImage = 'url("./imgs/laptop-mesa-madera_53876-70997.jpg")';
+          backgroundDiv.style.backgroundSize = 'cover';
+          backgroundDiv.style.backgroundPosition = 'center';
+          backgroundDiv.style.backgroundRepeat = 'no-repeat';
+          backgroundDiv.style.filter = 'brightness(30%)';
+          backgroundDiv.style.zIndex = '-1'; // Ensure it's behind the content
+
+          section.style.position = 'relative'; // Set section to relative positioning
+          section.prepend(backgroundDiv); // Add the background div as the first child of the section
+        });
+
+         // Remueve propiedad position: Absolute, ya que el script reaveal.js calcula automaticamente el top             
+         document.querySelectorAll('.reveal .slides section').forEach(section => {
+          section.setAttribute('style', 'position: static !important');
+        });   
 
         // Agregar borders de print
         addBordersForPrint();
