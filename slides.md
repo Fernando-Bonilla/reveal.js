@@ -8,8 +8,6 @@ Analista Programador - Programacion I
 <br>
 <br>
 <br>
-<br>
-<br>
 
 Profesor
 ###### Matias Verges

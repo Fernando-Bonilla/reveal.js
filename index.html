@@ -746,8 +746,35 @@
       display: flex !important;
     }
 
+    .slide-content-wrapper {
+      display: flex;
+      flex-direction: row; /* Arrange the left border and body side by side */
+      height: 100%;
+    }
 
+    .slide-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
 
+    .border-left-print {
+      height: 100%;
+      position: relative;
+    }
+
+    .pdf-page {
+      height: 100vh !important; /* Full height of the viewport */
+      min-height: 100vh !important;
+      /*width: 100vw; */
+      /*overflow-y: auto !important; /* Ensure content doesn't overflow */ 
+    }
+
+    /*.pdf-page .markdown-content {
+      padding: 0px;
+    }*/
+
+    
     
   </style>
   <script>
@@ -792,57 +819,57 @@
     }*/
 
     function addBordersForPrint() {
-  console.log('Adding print borders');
+      console.log('Adding print borders');
 
-  const slides = document.querySelectorAll('.slides section');
+      const slides = document.querySelectorAll('.slides section');
 
-  slides.forEach(slide => {
-    // Create wrapper elements for the slide
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('slide-content-wrapper');
+      slides.forEach(slide => {
+        // Create wrapper elements for the slide
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('slide-content-wrapper');
 
-    const borderLeft = document.createElement('div');
-    borderLeft.classList.add('border-left', 'border-left-print');
-    borderLeft.innerHTML = `
-      <div class="border-left-content-wrapper">
-        <div class="border-left-content border">
-          <p>Primer Semestre</p>
-        </div>
-        <div class="border-left-content">
-          <p>2024</p>
-        </div>
-      </div>`;
+        const borderLeft = document.createElement('div');
+        borderLeft.classList.add('border-left', 'border-left-print');
+        borderLeft.innerHTML = `
+          <div class="border-left-content-wrapper">
+            <div class="border-left-content border">
+              <p>Primer Semestre</p>
+            </div>
+            <div class="border-left-content">
+              <p>2024</p>
+            </div>
+          </div>`;
 
-    const borderTop = document.createElement('div');
-    borderTop.classList.add('border-top', 'border-top-print');
-    borderTop.innerHTML = `
-      <div class="border-top-content-wrapper">
-        <div>
-          <p>Analista Programador</p>
-        </div>
-        <div>
-          <p>Programación I - Introducción</p>
-        </div>
-      </div>`;
+        const borderTop = document.createElement('div');
+        borderTop.classList.add('border-top', 'border-top-print');
+        borderTop.innerHTML = `
+          <div class="border-top-content-wrapper">
+            <div>
+              <p>Analista Programador</p>
+            </div>
+            <div>
+              <p>Programación I - Introducción</p>
+            </div>
+          </div>`;
 
-    const body = document.createElement('div');
-    body.classList.add('slide-body');
+        const body = document.createElement('div');
+        body.classList.add('slide-body');
 
-    // Wrap all existing slide content
-    const markdownContent = document.createElement('div');
-    markdownContent.classList.add('markdown-content');
-    while (slide.firstChild) {
-      markdownContent.appendChild(slide.firstChild);
+        // Wrap all existing slide content
+        const markdownContent = document.createElement('div');
+        markdownContent.classList.add('markdown-content');
+        while (slide.firstChild) {
+          markdownContent.appendChild(slide.firstChild);
+        }
+
+        // Arrange elements into wrapper
+        body.appendChild(borderTop);
+        body.appendChild(markdownContent);
+        wrapper.appendChild(borderLeft);
+        wrapper.appendChild(body);
+        slide.appendChild(wrapper);
+      });
     }
-
-    // Arrange elements into wrapper
-    body.appendChild(borderTop);
-    body.appendChild(markdownContent);
-    wrapper.appendChild(borderLeft);
-    wrapper.appendChild(body);
-    slide.appendChild(wrapper);
-  });
-}
 
 
 
@@ -959,7 +986,7 @@
         };
       } */
 
-      // Cdigo que verifica si la url tiene el parametro print-pdf, si lo tiene muestra los div generados dinamicamente y esconde los div que estan en el html
+      // Codigo que verifica si la url tiene el parametro print-pdf, si lo tiene muestra los div generados dinamicamente y esconde los div que estan en el html
       const isPrintPDF = window.location.search.includes('print-pdf');
       document.body.classList.toggle('print-pdf', isPrintPDF);
 
@@ -967,6 +994,12 @@
         // Ocultar borders normales
         document.querySelectorAll('.border-top:not(.border-top-print)').forEach(border => border.style.display = 'none');
         document.querySelectorAll('.border-left:not(.border-left-print)').forEach(border => border.style.display = 'none');
+
+        // Remueve propiedad position: Absolute, ya que el script reaveal.js calcula automaticamente el top             
+        document.querySelectorAll('.reveal .slides section').forEach(section => {
+          section.setAttribute('style', 'position: static !important');
+        });     
+        
 
         // Agregar borders de print
         addBordersForPrint();
@@ -979,6 +1012,7 @@
 
     };
 
+   
   </script>
 </body>
 
