@@ -67,7 +67,7 @@
   <script src="/plugin/highlight/highlight.js"></script>
   <style>
     .reveal .slides {
-      text-align: left !important;
+      /*text-align: left !important;*/
       /*top: 60px;*/
       position: relative !important;
 
@@ -114,8 +114,9 @@
       }
     }
 
+    
     Reveal.initialize({
-      hash: true,
+      hash: true,     
 
       //width: 1920,
       //height: 1220,
@@ -123,9 +124,12 @@
       //width: '100%',
       //height: '100%',
 
-      width: '100%',
-      height: '90%',
-      margin: 0,
+      //width: 297,
+      //height: 210,
+
+      //width: '100%',
+      //height: '90%',
+      //margin: 0,
 
       autoScale: true,
 
@@ -568,6 +572,22 @@
       height: 100% !important;
     }
 
+    .reveal section {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .reveal .slides {
+      inset: unset !important;
+      width: 100% !important;
+      height: 90% !important;
+      left: 0 !important;
+      top: 0 !important;
+      transform: none !important; /* Ensures no unwanted transformations */
+      position: relative !important; /* Remove inset positioning */
+    }
+
+
     /*=========Estilos template=========*/
 
     /*=================== Estilos para que el contenido generado en la slide quede dentro de ambos bordes ==============*/
@@ -616,6 +636,11 @@
     .markdown-content {
       flex-grow: 1;
       padding: 20px;
+    }
+
+    .slides {
+      padding-left: 20px;
+      padding-right: 20px;
     }
 
     /*================= End Estilos para que el contenido generado en la slide quede dentro de ambos bordes ============*/
@@ -714,7 +739,7 @@
     }
 
     .code-wrapper {
-      width: 100% !important;
+      width: 99% !important;
       height: 100% !important;
     }
 
@@ -774,7 +799,30 @@
       background: transparent !important;
     }
 
-    
+
+    /* @media print {
+      body {
+        width: 297mm !important;
+        height: 210mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+      }
+
+      .reveal .slides {
+        width: 297mm !important;
+        height: 210mm !important;
+      }
+
+      .pdf-page {
+        width: 297mm !important;
+        height: 210mm !important;
+        page-break-after: always !important;
+      }
+    } */
+
+
+
     
   </style>
   <script>
@@ -990,24 +1038,15 @@
       const isPrintPDF = window.location.search.includes('print-pdf');
       document.body.classList.toggle('print-pdf', isPrintPDF);
 
-      if (isPrintPDF) {
+      if (isPrintPDF) {       
+
+
+        
         // Ocultar borders normales
         document.querySelectorAll('.border-top:not(.border-top-print)').forEach(border => border.style.display = 'none');
         document.querySelectorAll('.border-left:not(.border-left-print)').forEach(border => border.style.display = 'none');
 
-       
         
-        // Agrega la imagen de fondo y el filtro a cada slide
-        /*document.querySelectorAll('.reveal .slides section').forEach(section => {
-          section.style.backgroundImage = 'url("./imgs/laptop-mesa-madera_53876-70997.jpg")';
-          section.style.backgroundSize = 'cover';
-          section.style.backgroundPosition = 'center';
-          section.style.backgroundRepeat = 'no-repeat';
-          section.style.filter = 'brightness(30%)';
-          section.style.zIndex = '-1';
-          
-
-        });*/
         
         // Agrega la imagen de fondo y el filtro a cada slide
         document.querySelectorAll('.reveal .slides section').forEach(section => {
@@ -1016,7 +1055,9 @@
           backgroundDiv.style.top = 0;
           backgroundDiv.style.left = 0;
           backgroundDiv.style.width = '100%';
+          //backgroundDiv.style.width = '297mm';
           backgroundDiv.style.height = '100%';
+          //backgroundDiv.style.height = '210mm';
           backgroundDiv.style.backgroundImage = 'url("./imgs/laptop-mesa-madera_53876-70997.jpg")';
           backgroundDiv.style.backgroundSize = 'cover';
           backgroundDiv.style.backgroundPosition = 'center';
@@ -1026,7 +1067,7 @@
 
           section.style.position = 'relative'; // Set section to relative positioning
           section.prepend(backgroundDiv); // Add the background div as the first child of the section
-        });
+        });       
 
          // Remueve propiedad position: Absolute, ya que el script reaveal.js calcula automaticamente el top             
          document.querySelectorAll('.reveal .slides section').forEach(section => {
@@ -1034,7 +1075,9 @@
         });   
 
         // Agregar borders de print
-        addBordersForPrint();
+        addBordersForPrint();         
+        
+
       } else {
         // Ocultar borders de print en vista normal
         document.querySelectorAll('.border-top-print, .border-left-print').forEach(border => {
@@ -1046,6 +1089,36 @@
 
    
   </script>
+  <style>
+     @media print {
+      body {
+        width: 297mm !important;
+        height: 210mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+      }
+
+      .reveal .slides {
+        width: 297mm !important;
+        height: 210mm !important;
+      }
+
+      .pdf-page {
+        width: 297mm !important;
+        height: 210mm !important;
+        page-break-after: always !important;
+      } 
+
+      .reveal section {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    } 
+   
+
+
+  </style>
 </body>
 
 </html>
