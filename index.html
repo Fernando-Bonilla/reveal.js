@@ -641,6 +641,24 @@
 
           section.style.position = 'relative'; // Set section to relative positioning
           section.prepend(backgroundDiv); // Add the background div as the first child of the section
+
+          let slidesContainer = document.querySelector('.slides');
+          // Se capturan todas las imgs dentro del contenedor con la clase .slides (para scopear las imágenes a solo estas)
+          let imgCollection = slidesContainer.querySelectorAll('img');
+
+          for (let i = 0; i < imgCollection.length; i++) {
+
+            let img = imgCollection[i];
+            let parentImg = img.parentElement;
+
+            // Estilos del contenedor padre de la imagen
+
+            parentImg.style.marginRight = "0px";
+
+                    
+          };       
+
+          
         });       
 
          // Remueve propiedad position: Absolute, ya que el script reaveal.js calcula automaticamente el top             
