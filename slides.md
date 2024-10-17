@@ -121,5 +121,4 @@ Profesor
 - Utilizar el chat de Zoom para preguntas cortas
 - Levantar la mano virtual para preguntas largas o comentarios
 
----
 
