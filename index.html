@@ -374,7 +374,7 @@
     }
 
     .code-wrapper {
-      width: 99% !important;
+      width: 98% !important;
       height: 99% !important;
     }
 
@@ -695,6 +695,13 @@
         width: 297mm !important;
         height: 210mm !important;
       }
+      
+      .code-wrapper {
+        width: 80% !important; /* Asegura que no se salga del borde */
+        white-space: pre-wrap !important; /* Permite que el texto se envuelva */
+        word-wrap: break-word !important; /* Corta palabras largas */
+        overflow: hidden !important; /* Evita que se salga fuera del contenedor */        
+      }
 
       .pdf-page {
         width: 297mm !important;
@@ -706,6 +713,7 @@
         width: 100% !important;
         max-width: 100% !important;
       }
+      
     }   
 
 
